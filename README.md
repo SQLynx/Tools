@@ -2,7 +2,7 @@
 
 SQLynx is a specialized consultancy focused on SQL Server performance diagnostics, troubleshooting, and query tuning for Microsoft SQL Server and Azure SQL.
 
-The focus is production-grade analysis of real-world performance problems, including unstable workloads, plan cache churn, memory pressure, blocking, and degraded observability scenarios.
+The focus is production-grade diagnostics for SQL Server environments affected by plan cache bloat and unstable observability.
 
 - Company: SQLynx AS (Norway)
 - Website: https://sqlynx.no
