@@ -14,7 +14,7 @@ Specialized SQL Server performance diagnostics for **Microsoft SQL Server** and 
 
 This repository currently contains a single focused stored procedure and is intended to grow into a broader toolkit over time. The emphasis is on **production-grade diagnostics** for scenarios where traditional performance analysis becomes unreliable.
 
-About https://sqlynx.no/sqlynx-performance-kit/
+👉 https://sqlynx.no/sqlynx-performance-kit/
 
 ## Overview
 
