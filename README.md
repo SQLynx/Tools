@@ -14,21 +14,15 @@ Specialized SQL Server performance diagnostics for **Microsoft SQL Server** and 
 
 This repository currently contains a single focused stored procedure and is intended to grow into a broader toolkit over time. The emphasis is on **production-grade diagnostics** for scenarios where traditional performance analysis becomes unreliable.
 
----
-
 ## Overview
 
-SQLynxTool is designed for troubleshooting under **non-ideal engine conditions**, especially cases such as:
+SQLynxTool is designed for troubleshooting SQL Server environments affected by **plan cache bloat** and unstable workload observability.
 
-- Plan cache bloat
-- High plan churn
-- Ad hoc-heavy workloads
-- Unstable or incomplete DMV statistics
-- Degraded observability in production systems
+The toolkit focuses on scenarios where traditional DMV-based performance analysis becomes unreliable because execution statistics are short-lived, incomplete, or continuously evicted from cache.
 
-Instead of assuming stable long-lived execution statistics, SQLynxTool focuses on extracting **actionable signals from incomplete, volatile, or misleading plan cache data**.
+Instead of relying on stable long-term aggregation, SQLynxTool focuses on extracting actionable diagnostic signals from volatile and degraded plan cache conditions.
 
----
+
 
 ## Current Component
 
