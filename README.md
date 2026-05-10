@@ -28,9 +28,9 @@ Instead of relying on stable long-term aggregation, SQLynxTool focuses on extrac
 
 ## Current Component
 
-### `sp_LynxTopQueryMemoryLoad`
+### `sp_LynxTopQueriesGrantedMemoryLoad`
 
-`sp_LynxTopQueryMemoryLoad` is a specialized diagnostic stored procedure intended for use in scenarios involving **plan cache bloat**, where performance statistics stored in DMVs become unreliable because plans are evicted too frequently.
+`sp_LynxTopQueriesGrantedMemoryLoad` is a specialized diagnostic stored procedure intended for use in scenarios involving **plan cache bloat**, where performance statistics stored in DMVs become unreliable because plans are evicted too frequently.
 
 Under these conditions:
 
@@ -104,7 +104,7 @@ These sources are used with the understanding that, in plan cache bloat scenario
 
 ## Usage
 
-EXEC dbo.sp_LynxTopQueryMemoryLoad;
+EXEC dbo.sp_LynxTopQueriesGrantedMemoryLoad;
 
 
 ## Typical scenarios
