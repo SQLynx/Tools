@@ -1,8 +1,8 @@
 CREATE OR ALTER PROCEDURE dbo.sp_LynxTopQueriesGrantedMemoryLoad
 (
     @Top               INT = 10,
-    @SampleTimeSeconds INT = 30,
-    @SampleIntervalMs  INT = 100
+    @SampleTimeSeconds INT = 10,
+    @SampleIntervalMs  INT = 50
 )
 AS
 BEGIN
@@ -165,6 +165,7 @@ BEGIN
         WAITFOR DELAY @Delay;
     END;
 
+
     ---------------------------------------------------------------------
     -- Aggregated metrics for tunable queries only
     ---------------------------------------------------------------------
@@ -274,18 +275,18 @@ BEGIN
         ml.query_hash,
         ml.query_plan_hash,
 
-        ml.GrantedMemoryLoadScoreMB,
-        ml.UsedMemoryLoadScoreMB,
-        ml.UnusedMemoryLoadScoreMB,
+        CAST(ml.GrantedMemoryLoadScoreMB AS BIGINT) GrantedMemoryLoadScoreMB,
+        CAST(ml.UsedMemoryLoadScoreMB AS BIGINT) UsedMemoryLoadScoreMB,
+        CAST(ml.UnusedMemoryLoadScoreMB AS BIGINT) UnusedMemoryLoadScoreMB,
 
-        ml.AvgGrantedMemoryMB,
-        ml.MaxGrantedMemoryMB,
+        CAST(ml.AvgGrantedMemoryMB AS INT) AvgGrantedMemoryMB,
+        CAST(ml.MaxGrantedMemoryMB AS INT) MaxGrantedMemoryMB,
 
-        ml.AvgUsedMemoryMB,
-        ml.MaxUsedMemoryMB,
+        CAST(ml.AvgUsedMemoryMB AS INT) AvgUsedMemoryMB,
+        CAST(ml.MaxUsedMemoryMB AS INT) MaxUsedMemoryMB,
 
-        ml.AvgUnusedMemoryMB,
-        ml.MaxUnusedMemoryMB,
+        CAST(ml.AvgUnusedMemoryMB AS INT) AvgUnusedMemoryMB,
+        CAST(ml.MaxUnusedMemoryMB AS INT) MaxUnusedMemoryMB,
 
         ml.SampleCount,
         ml.DistinctSampleMoments,
@@ -346,41 +347,62 @@ BEGIN
     ---------------------------------------------------------------------
 
     SELECT TOP (@Top)
-        ResultSetName = 'Top queries by granted memory load',        
+        ResultSetName = 'Top queries by granted memory load',      
+        GrantedMemoryLoadScoreMB,
+        UsedMemoryLoadScoreMB,
+        UnusedMemoryLoadScoreMB,
+        MaxGrantedMemoryMB,
+        statement_text,
+        batch_text,
+        query_plan,
         *
     FROM 
         #Final
     ORDER BY
-        GrantedMemoryLoadScoreMB DESC,
-        UsedMemoryLoadScoreMB ASC,
-        MaxGrantedMemoryMB DESC
+        2 DESC,
+        3 ASC,
+        4 DESC
         
 
     ---------------------------------------------------------------------
     -- Result set 2: Top queries by unused memory load
-    ---------------------------------------------------------------------
+    ---------------------------------------------------------------------        
     SELECT TOP (@Top)
-        ResultSetName = 'Top queries by unused memory load',
+        ResultSetName = 'Top queries by unused memory load',      
+        UnusedMemoryLoadScoreMB,
+        GrantedMemoryLoadScoreMB,
+        UsedMemoryLoadScoreMB,
+        MaxGrantedMemoryMB,
+        statement_text,
+        batch_text,
+        query_plan,
         *
     FROM 
         #Final
     ORDER BY
-        UnusedMemoryLoadScoreMB DESC,
-        GrantedMemoryLoadScoreMB DESC,
-        MaxGrantedMemoryMB DESC
-        
+        2 DESC,
+        3 ASC,
+        4 DESC
     ---------------------------------------------------------------------
     -- Result set 3: Top queries by max granted memory
-    ---------------------------------------------------------------------
+    ---------------------------------------------------------------------    
     SELECT TOP (@Top)
-        ResultSetName = 'Top queries by max granted memory',
+        ResultSetName = 'Top queries by max granted memory',      
+        MaxGrantedMemoryMB,
+        GrantedMemoryLoadScoreMB,
+        UnusedMemoryLoadScoreMB,        
+        UsedMemoryLoadScoreMB,
+        
+        statement_text,
+        batch_text,
+        query_plan,
         *
     FROM 
         #Final
     ORDER BY
-        MaxGrantedMemoryMB DESC,
-        GrantedMemoryLoadScoreMB DESC,
-        UnusedMemoryLoadScoreMB DESC
-    OPTION (RECOMPILE);
+        2 DESC,
+        3 ASC,
+        4 DESC
+    
 END
 GO
