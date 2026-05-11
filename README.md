@@ -9,7 +9,7 @@ The focus is production-grade diagnostics for SQL Server environments affected b
 This repository currently contains a single focused stored procedure and is intended to grow into a broader toolkit over time.
 
 - Company: SQLynx AS (Norway)
-- Website: https://sqlynx.no
+- SQLynx:  https://sqlynx.no
 - Toolkit: https://sqlynx.no/sqlynx-performance-kit/
 
 
