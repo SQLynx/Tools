@@ -15,7 +15,7 @@ BEGIN
     Toolkit:       https://sqlynx.no/sqlynx-performance-kit/
 
     Procedure:     dbo.sp_LynxTopQueriesGrantedMemoryLoad
-    Version:       1.0.0
+    Version:       1.0.1
     Release date:  2026-03-22
 
     Purpose:
@@ -79,6 +79,7 @@ BEGIN
     IF @Top < 1 SET @Top = 10;
     IF @SampleTimeSeconds < 1 SET @SampleTimeSeconds = 30;
     IF @SampleIntervalMs < 50 SET @SampleIntervalMs = 50;
+    IF @SampleIntervalMs > 59999 SET @SampleIntervalMs = 59999;
 
     ---------------------------------------------------------------------
     -- Temp table for raw samples
