@@ -4,7 +4,8 @@ SQLynx Performance Kit is a collection of specialized SQL Server performance dia
 
 The toolkit is developed by **SQLynx AS**, a specialized consultancy focused on SQL Server performance diagnostics, troubleshooting, and query tuning.
 
-The focus is production-grade diagnostics for SQL Server environments affected by plan cache bloat and unstable observability, where traditional performance analysis becomes unreliable.
+The focus is production-grade diagnostics and performance tuning for SQL Server environments affected by plan cache bloat and unstable observability, where traditional performance analysis becomes unreliable. 
+The approach is based on production experience from high-load SQL Server environments, where traditional DMV-based analysis was unreliable.
 
 This repository currently contains a single focused stored procedure and is intended to grow into a broader toolkit over time.
 
